@@ -22,14 +22,7 @@ public class cameraFollow : MonoBehaviour
 
 	}
 	
-	// Update is called once per frame
 	void Update () {
-        /*
-        if (!gameOver) {
-			follow();
-			
-		}
-        */
 	}
 
 	void LateUpdate() {

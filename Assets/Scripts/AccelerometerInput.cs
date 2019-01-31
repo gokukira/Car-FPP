@@ -8,10 +8,9 @@ public class AccelerometerInput : MonoBehaviour {
 
 
     // Move object using accelerometer
-    //float speed = 10.0f;
-    public Slider slider;
 
-  
+    public Slider slider;
+    public Rigidbody rb;  
 	
 	// Update is called once per frame
 	void Update () {
@@ -39,13 +38,25 @@ public class AccelerometerInput : MonoBehaviour {
     */
 
 
-    /********** https://www.youtube.com/watch?v=XZWNXsjIvrE&feature=youtu.be ************/
+        /********** https://www.youtube.com/watch?v=XZWNXsjIvrE&feature=youtu.be ************/
+        
+        if (rb.rotation.y <= 0.2f )
+        {
+            transform.Rotate(0, Input.acceleration.x * 0.4f * slider.value, 0);
+            Debug.Log("Reverse" + rb.rotation.y);
+            transform.Translate(-Input.acceleration.x * 0.1f * slider.value, 0, 0.02f * slider.value);
+
+        }
 
 
-        //transform.Translate(-Input.acceleration.x, 0, 0);
+        else
+        {
+            transform.Rotate(0, Input.acceleration.x * 0.9f * slider.value, 0);
+            Debug.Log("Up" + rb.rotation.y);
+            transform.Translate(-Input.acceleration.x * 0.1f * slider.value, 0, -0.02f * slider.value);
 
-        transform.Rotate( 0, Input.acceleration.x * 1.4f * slider.value, 0);
+        }
 
-}
+    }
 
 }

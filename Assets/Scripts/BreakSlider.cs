@@ -18,11 +18,25 @@ public class BreakSlider : MonoBehaviour {
     {
         speed = Mathf.Clamp(1.4f*slider.value - NewValue, 0, 20);
 
-        if(Input.GetMouseButton(0))
-            rb.velocity = new Vector3(0, 0, speed);
+        if (rb.rotation.y <= 0.3f)
+        {
+            if (Input.GetMouseButton(0))
+                rb.velocity = new Vector3(0, 0, -speed);
+       
+        }
+        /*
+        else if (rb.rotation.y <= 0.7f)
+        {
+            if (Input.GetMouseButton(0))
+                rb.velocity = new Vector3(0, 0, -speed);
+        }
+        */
 
-
-
+        else
+        {
+            if (Input.GetMouseButton(0))
+                rb.velocity = new Vector3(0, 0, speed);
+        }
         /*
         speed = 2.5f;
         rb.AddForce(0, 0, NewValue*-speed, mode: ForceMode.Acceleration);

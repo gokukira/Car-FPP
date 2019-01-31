@@ -9,7 +9,6 @@ public class Car_Script : MonoBehaviour
         float rotationSpeed = 50.0f;
     
 
-    // Use this for initialization
     void Start()
     {
     }

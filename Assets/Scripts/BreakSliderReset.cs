@@ -9,8 +9,14 @@ public class BreakSliderReset : MonoBehaviour
     
     void LateUpdate()
     {
-        if (!Input.GetMouseButton(0))
-            bslider.value = Mathf.MoveTowards(bslider.value, -50.0f, 0.07f * bslider.value);
+        StartCoroutine(BreakReset());
+    }
 
+    IEnumerator BreakReset()
+    {
+        yield return new WaitForSeconds(0.01f);
+
+        if (!Input.GetMouseButton(0))
+            bslider.value = Mathf.MoveTowards(bslider.value, -50.0f, 0.035f * bslider.value);
     }
 }

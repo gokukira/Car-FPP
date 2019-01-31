@@ -40,8 +40,26 @@ public class AccSlider : MonoBehaviour
 
     public void Slider_Changed()
     {
-        if (Input.GetMouseButton(0))
-            rb.velocity = new Vector3(0, 0, 4*slider.value);
+        if (rb.rotation.y <= 0.2f )
+        {
+            if (Input.GetMouseButton(0))
+                rb.velocity = new Vector3(0, 0, -2f * slider.value);
+            Debug.Log("Loop 1");
+        }
+        /*
+        else if (rb.velocity.y >= -0.7f && rb.velocity.y <= 0)
+        {
+            if (Input.GetMouseButton(0))
+                rb.velocity = new Vector3(0, 0, -2.5f * slider.value);
+            Debug.Log("Loop 2");
+        }
+        */
+        else
+        {
+            if (Input.GetMouseButton(0))
+                rb.velocity = new Vector3(0, 0, 2.5f * slider.value);
+        }
+
             
         //transform.forward = GameObject.Find("Camera").transform.forward;
 
