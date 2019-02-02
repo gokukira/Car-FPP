@@ -9,11 +9,23 @@ public class AccelerometerInput : MonoBehaviour {
 
     // Move object using accelerometer
 
+    float bspeed;
+    float speed;
+    GameObject a;
     public Slider slider;
-    public Rigidbody rb;  
-	
-	// Update is called once per frame
+    public Rigidbody rb;
+
+    void Start()
+    {
+
+ 
+    }
+
 	void Update () {
+
+        bspeed = BreakSlider.binstance.t;
+
+        //Debug.Log("Acc" + slider.value);
         /*
         Vector3 dir = Vector3.zero;
 
@@ -40,22 +52,77 @@ public class AccelerometerInput : MonoBehaviour {
 
         /********** https://www.youtube.com/watch?v=XZWNXsjIvrE&feature=youtu.be ************/
         
-        if (rb.rotation.y <= 0.2f )
+        if (rb.rotation.y <= 0.2f && rb.rotation.y >=0f )
         {
             transform.Rotate(0, Input.acceleration.x * 0.4f * slider.value, 0);
             Debug.Log("Reverse" + rb.rotation.y);
+            transform.Translate(-Input.acceleration.x * 0.1f * slider.value, 0, 0.2f * slider.value);
+
+        }
+
+        /*
+        else if(rb.rotation.y < 0.9f && rb.rotation.y >= 0.5f)
+        {
+            transform.Rotate(0, Input.acceleration.x * 0.9f * slider.value, 0);
+            transform.Translate(-Input.acceleration.x * 2f * slider.value, 0, -0.01f * slider.value);
+        }
+        */
+
+        else if(rb.rotation.y < 0)
+        {
+            transform.Rotate(0, -Input.acceleration.x * 0.4f * slider.value, 0);
+            Debug.Log("Negative" + rb.rotation.y);
             transform.Translate(-Input.acceleration.x * 0.1f * slider.value, 0, 0.02f * slider.value);
 
         }
 
-
         else
         {
-            transform.Rotate(0, Input.acceleration.x * 0.9f * slider.value, 0);
-            Debug.Log("Up" + rb.rotation.y);
+            transform.Rotate(0, Input.acceleration.x * 0.6f * slider.value, 0);
+            //Debug.Log("Up" + rb.rotation.y);
             transform.Translate(-Input.acceleration.x * 0.1f * slider.value, 0, -0.02f * slider.value);
 
         }
+
+
+
+      
+        if (slider.value >= 20f)
+        {
+           
+            //Debug.Log(speed);
+            StartCoroutine(FullAcc());
+        }
+        
+
+
+        if (bspeed >= 0)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                transform.Translate(Input.acceleration.x * 0.01f * bspeed, 0, 0.02f * bspeed);
+                transform.Rotate(0,Input.acceleration.x - Input.acceleration.x,0);
+            }
+
+            /*
+            if (rb.rotation.y < 0)
+            {
+                transform.Rotate(0, 0, 0);
+                Debug.Log("BREAKNegative" + rb.rotation.y);
+                transform.Translate(-Input.acceleration.x * 0.1f * slider.value, -0, 0.01f * slider.value);
+
+            }
+            */
+        }
+
+    }
+
+    IEnumerator FullAcc()
+    {
+        yield return new WaitForSeconds(0.1f);
+        speed = Mathf.Clamp(20f + 5f + slider.value, 0, 100);
+        //Debug.Log(speed);
+        rb.velocity = new Vector3(-Input.acceleration.x * 0.01f * speed, 0, -0.02f * speed);
 
     }
 

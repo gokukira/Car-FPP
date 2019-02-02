@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: Technak
   productName: Car FPP
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -149,6 +149,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.game.Car_FP
+    Standalone: com.Technak.CarFPP
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16

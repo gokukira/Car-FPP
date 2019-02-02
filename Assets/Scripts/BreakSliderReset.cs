@@ -10,6 +10,7 @@ public class BreakSliderReset : MonoBehaviour
     void LateUpdate()
     {
         StartCoroutine(BreakReset());
+
     }
 
     IEnumerator BreakReset()

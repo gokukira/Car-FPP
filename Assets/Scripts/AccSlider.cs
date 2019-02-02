@@ -11,9 +11,10 @@ public class AccSlider : MonoBehaviour
     //public Button d ;
     //public Button n ;
     //public int gear;
-    float speed;
+    public float speed;
     float accelerate = 1f;
     public Transform target;
+    public static AccSlider instance;
 
     // private GameObject cameraContainer;
     //private Quaternion rot;
@@ -26,6 +27,8 @@ public class AccSlider : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
 
+        instance = this;
+
         //d.enabled = false;
         //n.enabled = true;
 
@@ -33,13 +36,17 @@ public class AccSlider : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+        //speed = slider.value;
+
         //speed = Mathf.Clamp(speed + accelerate, 0.1f ,2.5f);
 
     }
 
     public void Slider_Changed()
     {
+
+        speed = slider.value;
+
         if (rb.rotation.y <= 0.2f )
         {
             if (Input.GetMouseButton(0))
@@ -60,7 +67,7 @@ public class AccSlider : MonoBehaviour
                 rb.velocity = new Vector3(0, 0, 2.5f * slider.value);
         }
 
-            
+      
         //transform.forward = GameObject.Find("Camera").transform.forward;
 
         /*
