@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Car_Script : MonoBehaviour
 {
@@ -11,11 +12,12 @@ public class Car_Script : MonoBehaviour
     */
     public Rigidbody rb;
 
- 
+
     void Update()
     {
-        rb.centerOfMass = new Vector3(0.0f, 1.0f, 1.0f);
-
+        //rb.centerOfMass = new Vector3(0.0f, 1.0f, 1.0f);
+        rb.useGravity = true;
+        //Debug.Log(Input.mousePosition);
 
         //Debug.Log(rb.position.y);
         /*
@@ -32,13 +34,15 @@ public class Car_Script : MonoBehaviour
 
         if (rb.position.y < 0.0f)
         {
-         
             //rb.rotation = new Quaternion(90f,90f,180f,90f);
             StartCoroutine(Reset());
         }
+    
 
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
+
+
         /*
         if(rb.rotation.x < -0.2f || rb.rotation.z < -0.2f)
         {
@@ -56,6 +60,7 @@ public class Car_Script : MonoBehaviour
         transform.Rotate(0, rotation, 0);
         */
     }
+    
 
     IEnumerator Reset()
     {
@@ -63,6 +68,7 @@ public class Car_Script : MonoBehaviour
 
         rb.position = new Vector3(10f, 0.9f, 10f);
         rb.velocity = new Vector3(0, 0, 0);
+        
     }
 }
 

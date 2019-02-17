@@ -6,6 +6,7 @@ public class CameraView : MonoBehaviour
 {
     public GameObject firstPersonCamera;
     public GameObject overheadCamera;
+    public GameObject reverseCamera;
     public Button button;
     public int CamMode;
 
@@ -22,6 +23,7 @@ public class CameraView : MonoBehaviour
             StartCoroutine(CamChange());
         }
 
+        reverseCamera.SetActive(false);
     }
 
     IEnumerator CamChange()

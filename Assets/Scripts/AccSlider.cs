@@ -2,123 +2,96 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.EventSystems;
 
 public class AccSlider : MonoBehaviour
 {
     public Rigidbody rb;
-    public Slider slider ;
+    /*
+    public GameObject ReverseCam;
     //public Button d ;
     //public Button n ;
     //public int gear;
-    public float speed;
-    float accelerate = 1f;
     public Transform target;
+    public Toggle d;
+    public Toggle n;
+    public Toggle r;
+    */
+    public Slider slider ;
+    public float speed;
     public static AccSlider instance;
-
     // private GameObject cameraContainer;
     //private Quaternion rot;
 
     void Awake()
     {
-       //cameraContainer = new GameObject("Camera Velocity");
-        //cameraContainer.transform.position = transform.position;
-        //transform.SetParent(cameraContainer.transform);
-
         rb = GetComponent<Rigidbody>();
 
         instance = this;
 
-        //d.enabled = false;
-        //n.enabled = true;
+    }
+
+    void Start()
+    {
 
     }
 
     void FixedUpdate()
     {
-        //speed = slider.value;
+        speed = slider.value;
 
         //speed = Mathf.Clamp(speed + accelerate, 0.1f ,2.5f);
-
     }
+
+
+    /*
 
     public void Slider_Changed()
     {
 
         speed = slider.value;
+        //if (Input.mousePosition.x > 500f)
 
-        if (rb.rotation.y <= 0.2f )
+        if (d.isOn)
         {
-            if (Input.GetMouseButton(0))
-                rb.velocity = new Vector3(0, 0, -2f * slider.value);
-            Debug.Log("Loop 1");
+            if (rb.rotation.y <= 0.2f)
+            {
+                if (Input.GetMouseButton(0))
+                    rb.velocity = new Vector3(0, 0, -2f * slider.value);
+            }
+            
+            else if (rb.velocity.y >= -0.7f && rb.velocity.y <= 0)
+            {
+                if (Input.GetMouseButton(0))
+                    rb.velocity = new Vector3(0, 0, -2.5f * slider.value);
+                Debug.Log("Loop 2");
+            }
+            
+            else
+            {
+                if (Input.GetMouseButton(0))
+                    rb.velocity = new Vector3(0, 0, 2.5f * slider.value);
+                ReverseCam.SetActive(false);
+
+            }
         }
-        /*
-        else if (rb.velocity.y >= -0.7f && rb.velocity.y <= 0)
+
+
+        else if (r.isOn)
         {
             if (Input.GetMouseButton(0))
                 rb.velocity = new Vector3(0, 0, -2.5f * slider.value);
-            Debug.Log("Loop 2");
-        }
-        */
-        else
-        {
-            if (Input.GetMouseButton(0))
-                rb.velocity = new Vector3(0, 0, 2.5f * slider.value);
-        }
-
-      
-        //transform.forward = GameObject.Find("Camera").transform.forward;
-
-        /*
-        if (d.enabled)
-            n.enabled = false;
-
-        if (n.enabled)
-            d.enabled = false;
-
-        if (d.enabled )
-        {
-            gear = 1;
-            //n.enabled = false;
-            
-        }
-
-        if (n.enabled )
-        {
-            gear = 1;
-            //d.enabled = false;
-           
-        }
-
-        StartCoroutine(GearChange());
-        */
-
-    }
-    /*
-    IEnumerator GearChange()
-    {
-        yield return new WaitForSeconds(0.01f);
-
-        if(gear == 0)
-        {
-            if (Input.GetMouseButton(0))
-                rb.velocity = new Vector3(0, 0, -slider.value);
-        }
-
-        else if(gear == 1)
-        {
-            if (Input.GetMouseButton(0))
-                rb.velocity = new Vector3(0, 0, slider.value * 5);
+            ReverseCam.SetActive(false);
         }
 
         else
+        {
             if (Input.GetMouseButton(0))
-            rb.velocity = new Vector3(0, 0, 5);
-    }
+                transform.Translate(0, 0, 0);
+            ReverseCam.SetActive(false);
 
-    //rb.AddForce(0, 0, newValue * speed, ForceMode.Acceleration);
-    //}
+        }
+
+    }
     */
-
 }
