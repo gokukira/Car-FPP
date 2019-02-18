@@ -13,7 +13,7 @@ public class triggerCheck : MonoBehaviour
     public static triggerCheck instance;
     GameObject[] bclone;
     int len;
-    float s, r;
+    //float s, r;
 
     float damage = 0;
 
@@ -31,8 +31,8 @@ public class triggerCheck : MonoBehaviour
     void Start()
     {
         len = bclone.Length;
-        r = Random.Range(6, 8);
-        s = Random.Range(4, 5);
+        //r = Random.Range(6, 8);
+        //s = Random.Range(4, 5);
     }
 
     void OnCollisionEnter(Collision col)
@@ -49,12 +49,13 @@ public class triggerCheck : MonoBehaviour
                 if(col.relativeVelocity.z >= 0)
                     damage = damage + count + col.relativeVelocity.z;
                 Debug.Log(damage);
+                
                 //brick.AddExplosionForce(car.velocity.z,transform.position,5);
 
                 foreach (GameObject target in bclone)
                 {
                     //for (int i=0;i<len;i++) 
-                    GameObject.Destroy(target, r);
+                    GameObject.Destroy(target, 6);
                     triggered = true;
 
                 }
@@ -76,7 +77,7 @@ public class triggerCheck : MonoBehaviour
 
     IEnumerator CreateWall()
     {
-        yield return new WaitForSeconds(s);
+        yield return new WaitForSeconds(4f);
 
         if (triggered)
         {
